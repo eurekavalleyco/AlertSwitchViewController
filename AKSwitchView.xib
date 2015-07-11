@@ -35,6 +35,8 @@
                 <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="PV3-BZ-IC2" secondAttribute="bottom" priority="750" id="JPO-Wo-owW"/>
                 <constraint firstItem="zK5-Ba-bDO" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leadingMargin" id="Lx0-en-HjQ"/>
                 <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="zK5-Ba-bDO" secondAttribute="bottom" priority="750" id="Wda-px-dtR"/>
+                <constraint firstAttribute="centerY" secondItem="zK5-Ba-bDO" secondAttribute="centerY" id="h8t-lw-AaK"/>
+                <constraint firstAttribute="centerY" secondItem="PV3-BZ-IC2" secondAttribute="centerY" id="lNJ-kj-wwh"/>
                 <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="zK5-Ba-bDO" secondAttribute="trailing" priority="750" id="met-9X-5EL"/>
                 <constraint firstItem="zK5-Ba-bDO" firstAttribute="top" relation="greaterThanOrEqual" secondItem="iN0-l3-epB" secondAttribute="topMargin" priority="750" id="nyo-iG-TSq"/>
                 <constraint firstAttribute="trailingMargin" secondItem="PV3-BZ-IC2" secondAttribute="trailing" id="pU8-Hv-QUM"/>
@@ -43,6 +45,12 @@
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="7ae-2S-EWX"/>
+                    <exclude reference="rN8-oW-D6Z"/>
+                </mask>
+            </variation>
             <point key="canvasLocation" x="216.5" y="315.5"/>
         </view>
     </objects>

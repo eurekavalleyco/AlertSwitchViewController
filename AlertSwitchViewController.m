@@ -18,7 +18,7 @@
 
 #pragma mark - // DEFINITIONS (Private) //
 
-#define ANIMATION_DURATION 1.0
+#define ANIMATION_DURATION 0.225
 #define DEFAULT_ON NO
 #define ROW_HEIGHT 50.0
 #define MAX_HEIGHT_PERCENTAGE 50.0
@@ -29,7 +29,7 @@
 @property (nonatomic, strong) NSMutableArray *switchViews;
 - (void)setup;
 - (void)teardown;
-- (void)layoutSwitchViews;
+- (void)layoutSwitchViews:(BOOL)animated completion:(void (^)(BOOL finished))completion;
 - (void)updatePreferredContentSizeWithSize:(CGSize)size;
 - (AKSwitchView *)createSwitchAtIndex:(NSUInteger)index withText:(NSString *)text on:(BOOL)on;
 - (void)addTarget:(id)target selector:(SEL)selector forAllSwitchesWithControlEvents:(UIControlEvents)events;
@@ -112,7 +112,7 @@
     {
         [_switchViews addObject:[self createSwitchAtIndex:i withText:[self.textForSwitches objectAtIndex:i] on:DEFAULT_ON]];
     }
-    [self layoutSwitchViews];
+    [self layoutSwitchViews:NO completion:nil];
     return _switchViews;
 }
 
@@ -237,13 +237,8 @@
     
     if (index >= self.switchViews.count) return;
     
-    AKSwitchView *switchView = [self.switchViews objectAtIndex:index];
-    NSTimeInterval duration = 0.0;
-    if (animated) duration = ANIMATION_DURATION;
-    [UIView animateWithDuration:duration animations:^{
-        [switchView setHidden:NO];
-        [self layoutSwitchViews];
-    } completion:completion];
+    [[self.switchViews objectAtIndex:index] setHidden:NO];
+    [self layoutSwitchViews:animated completion:completion];
 }
 
 - (void)hideSwitchAtIndex:(NSUInteger)index animated:(BOOL)animated completion:(void (^)(BOOL finished))completion
@@ -252,13 +247,8 @@
     
     if (index >= self.switchViews.count) return;
     
-    AKSwitchView *switchView = [self.switchViews objectAtIndex:index];
-    NSTimeInterval duration = 0.0;
-    if (animated) duration = ANIMATION_DURATION;
-    [UIView animateWithDuration:duration animations:^{
-        [switchView setHidden:YES];
-        [self layoutSwitchViews];
-    } completion:completion];
+    [[self.switchViews objectAtIndex:index] setHidden:YES];
+    [self layoutSwitchViews:animated completion:completion];
 }
 
 #pragma mark - // DELEGATED METHODS //
@@ -288,27 +278,41 @@
     [AKDebugger logMethod:METHOD_NAME logType:AKLogTypeMethodName methodType:AKMethodTypeSetup customCategories:nil message:nil];
 }
 
-- (void)layoutSwitchViews
+- (void)layoutSwitchViews:(BOOL)animated completion:(void (^)(BOOL finished))completion
 {
     [AKDebugger logMethod:METHOD_NAME logType:AKLogTypeMethodName methodType:AKMethodTypeSetup customCategories:@[AKD_UI] message:nil];
     
-    AKSwitchView *switchView;
-    CGFloat y = 0.0;
-    for (int i = 0; i < self.switchViews.count; i++)
-    {
-        switchView = [self.switchViews objectAtIndex:i];
-        if (switchView.hidden)
+    NSMutableArray *hiddenViews = [[NSMutableArray alloc] init];
+    NSTimeInterval duration = 0.0;
+    if (animated) duration = ANIMATION_DURATION;
+    [UIView animateWithDuration:duration animations:^{
+        AKSwitchView *switchView;
+        CGFloat y = 0.0;
+        for (int i = 0; i < self.switchViews.count; i++)
         {
-            [switchView setFrame:CGRectMake(0.0, y, self.scrollView.bounds.size.width, 0.0)];
+            switchView = [self.switchViews objectAtIndex:i];
+            if (switchView.hidden)
+            {
+                [switchView setHidden:NO];
+                [hiddenViews addObject:switchView];
+                [switchView setAlpha:0.0];
+            }
+            else
+            {
+                [switchView setFrame:CGRectMake(0.0, y, self.scrollView.bounds.size.width, ROW_HEIGHT)];
+                [switchView setAlpha:1.0];
+                y += ROW_HEIGHT;
+            }
+            if (![self.scrollView.subviews containsObject:switchView]) [self.scrollView addSubview:switchView];
         }
-        else
+        [self.scrollView setContentSize:CGSizeMake(self.viewController.view.bounds.size.width, y)];
+    } completion:^(BOOL finished){
+        for (UIView *view in hiddenViews)
         {
-            [switchView setFrame:CGRectMake(0.0, y, self.scrollView.bounds.size.width, ROW_HEIGHT)];
-            y += ROW_HEIGHT;
+            [view setHidden:YES];
         }
-        if (![self.scrollView.subviews containsObject:switchView]) [self.scrollView addSubview:switchView];
-    }
-    [self.scrollView setContentSize:CGSizeMake(self.viewController.view.bounds.size.width, y)];
+        if (completion) completion(finished);
+    }];
 }
 
 - (void)updatePreferredContentSizeWithSize:(CGSize)size
