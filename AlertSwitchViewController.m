@@ -283,6 +283,7 @@
     [AKDebugger logMethod:METHOD_NAME logType:AKLogTypeMethodName methodType:AKMethodTypeSetup customCategories:@[AKD_UI] message:nil];
     
     NSMutableArray *hiddenViews = [[NSMutableArray alloc] init];
+    CGFloat oldContentHeight = self.scrollView.contentSize.height;
     NSTimeInterval duration = 0.0;
     if (animated) duration = ANIMATION_DURATION;
     [UIView animateWithDuration:duration animations:^{
@@ -310,6 +311,10 @@
         for (UIView *view in hiddenViews)
         {
             [view setHidden:YES];
+        }
+        if ((self.scrollView.contentSize.height > self.scrollView.frame.size.height) && (oldContentHeight <= self.scrollView.frame.size.height))
+        {
+            [self.scrollView flashScrollIndicators];
         }
         if (completion) completion(finished);
     }];
