@@ -13,7 +13,7 @@
 #import "AlertSwitchViewController.h"
 #import "AKDebugger.h"
 #import "AKGenerics.h"
-#import "AKSystemInfo.h"
+#import "SystemInfo.h"
 #import "AKSwitchView.h"
 
 #pragma mark - // DEFINITIONS (Private) //
@@ -132,7 +132,7 @@
     
     [super viewWillAppear:animated];
     
-    [self updatePreferredContentSizeWithSize:[AKSystemInfo screenSize]];
+    [self updatePreferredContentSizeWithSize:[SystemInfo screenSize]];
 }
 
 - (void)viewDidAppear:(BOOL)animated
