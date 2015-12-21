@@ -48,7 +48,7 @@
 
 - (void)setDelegate:(id<SwitchDelegate>)delegate
 {
-    [AKDebugger logMethod:METHOD_NAME logType:AKLogTypeMethodName methodType:AKMethodTypeSetter customCategories:@[AKD_UI] message:nil];
+    [AKDebugger logMethod:METHOD_NAME logType:AKLogTypeMethodName methodType:AKMethodTypeSetter tags:@[AKD_UI] message:nil];
     
     if ([delegate isEqual:_delegate] || (!delegate && !_delegate)) return;
     
@@ -59,7 +59,7 @@
 
 - (UIScrollView *)scrollView
 {
-    [AKDebugger logMethod:METHOD_NAME logType:AKLogTypeMethodName methodType:AKMethodTypeGetter customCategories:@[AKD_UI] message:nil];
+    [AKDebugger logMethod:METHOD_NAME logType:AKLogTypeMethodName methodType:AKMethodTypeGetter tags:@[AKD_UI] message:nil];
     
     if (_scrollView) return _scrollView;
     
@@ -82,7 +82,7 @@
 
 - (NSMutableArray *)textForSwitches
 {
-    [AKDebugger logMethod:METHOD_NAME logType:AKLogTypeMethodName methodType:AKMethodTypeGetter customCategories:@[AKD_UI] message:nil];
+    [AKDebugger logMethod:METHOD_NAME logType:AKLogTypeMethodName methodType:AKMethodTypeGetter tags:@[AKD_UI] message:nil];
     
     if (_textForSwitches) return _textForSwitches;
     
@@ -92,7 +92,7 @@
 
 - (UIViewController *)viewController
 {
-    [AKDebugger logMethod:METHOD_NAME logType:AKLogTypeMethodName methodType:AKMethodTypeGetter customCategories:@[AKD_UI] message:nil];
+    [AKDebugger logMethod:METHOD_NAME logType:AKLogTypeMethodName methodType:AKMethodTypeGetter tags:@[AKD_UI] message:nil];
     
     if (_viewController) return _viewController;
     
@@ -103,7 +103,7 @@
 
 - (NSMutableArray *)switchViews
 {
-    [AKDebugger logMethod:METHOD_NAME logType:AKLogTypeMethodName methodType:AKMethodTypeGetter customCategories:@[AKD_UI] message:nil];
+    [AKDebugger logMethod:METHOD_NAME logType:AKLogTypeMethodName methodType:AKMethodTypeGetter tags:@[AKD_UI] message:nil];
     
     if (_switchViews) return _switchViews;
     
@@ -120,7 +120,7 @@
 
 - (void)viewDidLoad
 {
-    [AKDebugger logMethod:METHOD_NAME logType:AKLogTypeMethodName methodType:AKMethodTypeSetup customCategories:@[AKD_UI] message:nil];
+    [AKDebugger logMethod:METHOD_NAME logType:AKLogTypeMethodName methodType:AKMethodTypeSetup tags:@[AKD_UI] message:nil];
     
     [super viewDidLoad];
     [self setup];
@@ -128,7 +128,7 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [AKDebugger logMethod:METHOD_NAME logType:AKLogTypeMethodName methodType:AKMethodTypeSetup customCategories:@[AKD_UI] message:nil];
+    [AKDebugger logMethod:METHOD_NAME logType:AKLogTypeMethodName methodType:AKMethodTypeSetup tags:@[AKD_UI] message:nil];
     
     [super viewWillAppear:animated];
     
@@ -137,7 +137,7 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    [AKDebugger logMethod:METHOD_NAME logType:AKLogTypeMethodName methodType:AKMethodTypeSetup customCategories:@[AKD_UI] message:nil];
+    [AKDebugger logMethod:METHOD_NAME logType:AKLogTypeMethodName methodType:AKMethodTypeSetup tags:@[AKD_UI] message:nil];
     
     [super viewDidAppear:animated];
     
@@ -146,14 +146,14 @@
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-    [AKDebugger logMethod:METHOD_NAME logType:AKLogTypeMethodName methodType:AKMethodTypeSetup customCategories:@[AKD_UI] message:nil];
+    [AKDebugger logMethod:METHOD_NAME logType:AKLogTypeMethodName methodType:AKMethodTypeSetup tags:@[AKD_UI] message:nil];
     
     [super viewWillDisappear:animated];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
 {
-    [AKDebugger logMethod:METHOD_NAME logType:AKLogTypeMethodName methodType:AKMethodTypeSetup customCategories:@[AKD_UI] message:nil];
+    [AKDebugger logMethod:METHOD_NAME logType:AKLogTypeMethodName methodType:AKMethodTypeSetup tags:@[AKD_UI] message:nil];
     
     CGRect rect = CGRectMake(self.scrollView.contentInset.left, self.scrollView.contentInset.top, self.scrollView.frame.size.width, 1.0);
     [self.scrollView scrollRectToVisible:rect animated:NO];
@@ -162,7 +162,7 @@
 
 - (void)dealloc
 {
-    [AKDebugger logMethod:METHOD_NAME logType:AKLogTypeMethodName methodType:AKMethodTypeSetup customCategories:@[AKD_UI] message:nil];
+    [AKDebugger logMethod:METHOD_NAME logType:AKLogTypeMethodName methodType:AKMethodTypeSetup tags:@[AKD_UI] message:nil];
     
     [self teardown];
 }
@@ -171,7 +171,7 @@
 
 - (UISwitch *)switchAtIndex:(NSUInteger)index
 {
-    [AKDebugger logMethod:METHOD_NAME logType:AKLogTypeMethodName methodType:AKMethodTypeGetter customCategories:@[AKD_UI] message:nil];
+    [AKDebugger logMethod:METHOD_NAME logType:AKLogTypeMethodName methodType:AKMethodTypeGetter tags:@[AKD_UI] message:nil];
     
     if (index >= self.switchViews.count) return nil;
     
@@ -180,7 +180,7 @@
 
 - (NSNumber *)indexForSwitch:(UISwitch *)buttonSwitch
 {
-    [AKDebugger logMethod:METHOD_NAME logType:AKLogTypeMethodName methodType:AKMethodTypeGetter customCategories:@[AKD_UI] message:nil];
+    [AKDebugger logMethod:METHOD_NAME logType:AKLogTypeMethodName methodType:AKMethodTypeGetter tags:@[AKD_UI] message:nil];
     
     for (int i = 0; i < self.switchViews.count; i++)
     {
@@ -195,14 +195,14 @@
 
 - (void)addSwitchWithText:(NSString *)text on:(BOOL)on
 {
-    [AKDebugger logMethod:METHOD_NAME logType:AKLogTypeMethodName methodType:AKMethodTypeUnspecified customCategories:@[AKD_UI] message:nil];
+    [AKDebugger logMethod:METHOD_NAME logType:AKLogTypeMethodName methodType:AKMethodTypeUnspecified tags:@[AKD_UI] message:nil];
     
     [self insertSwitchAtIndex:self.switchViews.count withText:text on:on animated:NO];
 }
 
 - (void)insertSwitchAtIndex:(NSUInteger)index withText:(NSString *)text on:(BOOL)on animated:(BOOL)animated
 {
-    [AKDebugger logMethod:METHOD_NAME logType:AKLogTypeMethodName methodType:AKMethodTypeUnspecified customCategories:@[AKD_UI] message:nil];
+    [AKDebugger logMethod:METHOD_NAME logType:AKLogTypeMethodName methodType:AKMethodTypeUnspecified tags:@[AKD_UI] message:nil];
     
     AKSwitchView *switchView = [self createSwitchAtIndex:index withText:text on:on];
     if (!switchView) return;
@@ -213,7 +213,7 @@
 
 - (void)setText:(NSString *)text forLabelAtIndex:(NSUInteger)index
 {
-    [AKDebugger logMethod:METHOD_NAME logType:AKLogTypeMethodName methodType:AKMethodTypeSetter customCategories:@[AKD_UI] message:nil];
+    [AKDebugger logMethod:METHOD_NAME logType:AKLogTypeMethodName methodType:AKMethodTypeSetter tags:@[AKD_UI] message:nil];
     
     [self.textForSwitches replaceObjectAtIndex:index withObject:text];
     [((AKSwitchView *)[self.switchViews objectAtIndex:index]).label setText:text];
@@ -221,7 +221,7 @@
 
 - (void)removeSwitchAtIndex:(NSUInteger)index animated:(BOOL)animated
 {
-    [AKDebugger logMethod:METHOD_NAME logType:AKLogTypeMethodName methodType:AKMethodTypeUnspecified customCategories:@[AKD_UI] message:nil];
+    [AKDebugger logMethod:METHOD_NAME logType:AKLogTypeMethodName methodType:AKMethodTypeUnspecified tags:@[AKD_UI] message:nil];
     
     if (index >= self.switchViews.count) return;
     
@@ -233,7 +233,7 @@
 
 - (void)showSwitchAtIndex:(NSUInteger)index animated:(BOOL)animated completion:(void (^)(BOOL finished))completion
 {
-    [AKDebugger logMethod:METHOD_NAME logType:AKLogTypeMethodName methodType:AKMethodTypeUnspecified customCategories:@[AKD_UI] message:nil];
+    [AKDebugger logMethod:METHOD_NAME logType:AKLogTypeMethodName methodType:AKMethodTypeUnspecified tags:@[AKD_UI] message:nil];
     
     if (index >= self.switchViews.count) return;
     
@@ -243,7 +243,7 @@
 
 - (void)hideSwitchAtIndex:(NSUInteger)index animated:(BOOL)animated completion:(void (^)(BOOL finished))completion
 {
-    [AKDebugger logMethod:METHOD_NAME logType:AKLogTypeMethodName methodType:AKMethodTypeUnspecified customCategories:@[AKD_UI] message:nil];
+    [AKDebugger logMethod:METHOD_NAME logType:AKLogTypeMethodName methodType:AKMethodTypeUnspecified tags:@[AKD_UI] message:nil];
     
     if (index >= self.switchViews.count) return;
     
@@ -257,7 +257,7 @@
 
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
 {
-    [AKDebugger logMethod:METHOD_NAME logType:AKLogTypeMethodName methodType:AKMethodTypeSetup customCategories:@[AKD_UI] message:nil];
+    [AKDebugger logMethod:METHOD_NAME logType:AKLogTypeMethodName methodType:AKMethodTypeSetup tags:@[AKD_UI] message:nil];
     
     [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
     
@@ -268,19 +268,19 @@
 
 - (void)setup
 {
-    [AKDebugger logMethod:METHOD_NAME logType:AKLogTypeMethodName methodType:AKMethodTypeSetup customCategories:nil message:nil];
+    [AKDebugger logMethod:METHOD_NAME logType:AKLogTypeMethodName methodType:AKMethodTypeSetup tags:nil message:nil];
     
     [self setValue:self.viewController forKey:@"contentViewController"];
 }
 
 - (void)teardown
 {
-    [AKDebugger logMethod:METHOD_NAME logType:AKLogTypeMethodName methodType:AKMethodTypeSetup customCategories:nil message:nil];
+    [AKDebugger logMethod:METHOD_NAME logType:AKLogTypeMethodName methodType:AKMethodTypeSetup tags:nil message:nil];
 }
 
 - (void)layoutSwitchViews:(BOOL)animated completion:(void (^)(BOOL finished))completion
 {
-    [AKDebugger logMethod:METHOD_NAME logType:AKLogTypeMethodName methodType:AKMethodTypeSetup customCategories:@[AKD_UI] message:nil];
+    [AKDebugger logMethod:METHOD_NAME logType:AKLogTypeMethodName methodType:AKMethodTypeSetup tags:@[AKD_UI] message:nil];
     
     NSMutableArray *hiddenViews = [[NSMutableArray alloc] init];
     NSTimeInterval duration = 0.0;
@@ -317,7 +317,7 @@
 
 - (void)updatePreferredContentSizeWithSize:(CGSize)size
 {
-    [AKDebugger logMethod:METHOD_NAME logType:AKLogTypeMethodName methodType:AKMethodTypeSetup customCategories:@[AKD_UI] message:nil];
+    [AKDebugger logMethod:METHOD_NAME logType:AKLogTypeMethodName methodType:AKMethodTypeSetup tags:@[AKD_UI] message:nil];
     
     CGSize preferredContentSize = self.scrollView.contentSize;
     CGFloat maxHeight = size.height*MAX_HEIGHT_PERCENTAGE/100.0;
@@ -327,7 +327,7 @@
 
 - (AKSwitchView *)createSwitchAtIndex:(NSUInteger)index withText:(NSString *)text on:(BOOL)on
 {
-    [AKDebugger logMethod:METHOD_NAME logType:AKLogTypeMethodName methodType:AKMethodTypeCreator customCategories:@[AKD_UI] message:nil];
+    [AKDebugger logMethod:METHOD_NAME logType:AKLogTypeMethodName methodType:AKMethodTypeCreator tags:@[AKD_UI] message:nil];
     
     if (index > self.switchViews.count) return nil;
     
@@ -342,7 +342,7 @@
 
 - (void)addTarget:(id)target selector:(SEL)selector forAllSwitchesWithControlEvents:(UIControlEvents)events
 {
-    [AKDebugger logMethod:METHOD_NAME logType:AKLogTypeMethodName methodType:AKMethodTypeSetter customCategories:@[AKD_UI] message:nil];
+    [AKDebugger logMethod:METHOD_NAME logType:AKLogTypeMethodName methodType:AKMethodTypeSetter tags:@[AKD_UI] message:nil];
     
     for (AKSwitchView *switchView in self.switchViews)
     {
@@ -352,7 +352,7 @@
 
 - (void)removeTarget:(id)target selector:(SEL)selector forAllSwitchesWithControlEvents:(UIControlEvents)events
 {
-    [AKDebugger logMethod:METHOD_NAME logType:AKLogTypeMethodName methodType:AKMethodTypeSetter customCategories:@[AKD_UI] message:nil];
+    [AKDebugger logMethod:METHOD_NAME logType:AKLogTypeMethodName methodType:AKMethodTypeSetter tags:@[AKD_UI] message:nil];
     
     for (AKSwitchView *switchView in self.switchViews)
     {
